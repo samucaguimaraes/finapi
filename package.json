@@ -1,9 +1,9 @@
 {
-  "name": "API_NODE",
+  "name": "finapi",
   "version": "1.0.0",
   "description": "Api para calculos financeiros",
   "main": "index.js",
-  "repository": "https://labDevops2022@dev.azure.com/labDevops2022/api_node/_git/api_node",
+  "repository": "https://github.com/samucaguimaraes/finapi.git",
   "author": "Samuel Guimarães <samuca.guimaraes@gmail.com>",
   "license": "MIT",
   "scripts": {
