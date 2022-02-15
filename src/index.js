@@ -46,6 +46,7 @@ app.post("/account", (request, response) =>{
         (customer) => customer.cpf === cpf
     );
 
+    
     if(customerAlreadyExists){
         return response.status(400).json({error: "Customer already exists!"});
     }
@@ -124,4 +125,40 @@ app.post("/withdraw", verifyIfExistsAccountCPF, (request, response) => {
 
 });
 
+app.put("/account", verifyIfExistsAccountCPF, (request, response) => {
+    const { name } = request.body;
+    const { customer } = request;
+    
+    customer.name = name;
+
+    return response.status(201).send();
+});
+
+app.get("/account", verifyIfExistsAccountCPF, (request, response) => {
+    const { customer } = request;
+    
+    return response.json(customer);
+
+})
+
+app.get("/account/list", (request, response) => {
+    return response.status(200).json(customers);
+})
+
+app.delete("/account", verifyIfExistsAccountCPF, (request, response) => {
+    const { customer } = request;
+
+    // splice
+    customers.splice(customer, 1);
+
+    return response.status(200).json(customers);
+})
+
+app.get("/balance", verifyIfExistsAccountCPF, (request, response) => {
+    const { customer } = request;
+
+    const balance = getBalance(customer.statement);
+
+    return response.json(balance);
+ })
 app.listen(3333);
